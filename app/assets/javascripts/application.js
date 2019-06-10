@@ -17,6 +17,18 @@
 //= require_tree .
 //= require materialize
 
-$( document ).on('turbolinks:load', function(){
-    $('.sidenav').sidenav();
-})
+document.addEventListener('turbolinks:load', function() {
+  var elems = document.querySelectorAll('.sidenav');
+  var instances = M.Sidenav.init(elems, { draggable: true });
+});
+
+document.addEventListener("turbolinks:before-cache", function() {
+  jQuery('.sidenav').sidenav('destroy');
+});
+
+function showErrors(errors) {
+  console.log(errors)
+  errors.forEach(function(error){
+    M.toast({html: 'I am a toast!'})
+  })
+}

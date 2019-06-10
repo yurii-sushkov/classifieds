@@ -3,7 +3,7 @@
 */
 @import "materialize/components/color-variables";
 $primary-color: color("blue-grey", "darken-4") !default;
-$secondary-color: color("yellow", "base") !default;
+$secondary-color: color("teal", "lighten-2") !default;
 @import 'materialize';
 
 body {
@@ -18,9 +18,14 @@ main {
 
 .subcategory-list {
   color: #000;
+  font-weight: lighter;
 }
 
 .subcategory-list:hover {
   color: #039be5;
   -webkit-transition: color 0.2s ease-out;
+}
+
+.container {
+  padding: 20px;
 }

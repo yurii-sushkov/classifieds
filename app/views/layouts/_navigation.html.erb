@@ -4,16 +4,13 @@
       <a href="#" class="brand-logo right">UKI ADS</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="hide-on-med-and-down">
-        <li><a href="#">Sass</a></li>
-        <li><a href="#">Components</a></li>
-        <li><a href="#">Login</a></li>
+        <li><%= link_to 'Home', categories_path %></li>
+        <li><%= link_to 'New Category', new_category_path %></li>
       </ul>
     </div>
   </nav>
+  <ul class="sidenav" id="mobile-demo">
+    <li><%= link_to 'Home', categories_path %></li>
+    <li><%= link_to 'New Category', new_category_path %></li>
+  </ul>
 </header>
-<ul class="sidenav" id="mobile-demo">
-  <li><a href="#">Sass</a></li>
-  <li><a href="#">Components</a></li>
-  <li><a href="#">Login</a></li>
-  <li><a href="#">Mobile</a></li>
-</ul>

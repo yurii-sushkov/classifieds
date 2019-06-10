@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  require "execjs"
   before_action :set_category, only: [:show, :edit, :update]
 
   def index
@@ -19,6 +20,8 @@ class CategoriesController < ApplicationController
     if @category.save
       flash[:notice] = "Category #{@category.title} has been created!"
       redirect_to root_path
+    else
+      render 'new'
     end
   end
 
