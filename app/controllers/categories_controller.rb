@@ -29,6 +29,8 @@ class CategoriesController < ApplicationController
     if @category.update(category_params)
       flash[:notice] = "Category #{@category.title} has been updated!"
       redirect_to root_path
+    else
+      render 'new'
     end
   end
 

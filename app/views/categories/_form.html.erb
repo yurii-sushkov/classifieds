@@ -16,7 +16,10 @@
             <h5>Subcategories list</h5>
             <ul>
               <% @category.subcategories.each do |subcategory| %>
-                <li><%= subcategory.title %></li>
+                <li><%= subcategory.title %>
+                  <%= link_to '<i class="material-icons tiny">edit</i>'.html_safe, edit_category_subcategory_path(@category.id, subcategory.id) %>
+                  <%= link_to '<i class="red-text material-icons tiny">delete_forever</i>'.html_safe, root_path %>
+                </li>
               <% end %>
             </ul>
           <% end %>
