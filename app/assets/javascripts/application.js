@@ -26,9 +26,12 @@ document.addEventListener("turbolinks:before-cache", function() {
   jQuery('.sidenav').sidenav('destroy');
 });
 
-function showErrors(errors) {
-  console.log(errors)
-  errors.forEach(function(error){
-    M.toast({html: 'I am a toast!'})
+$(document).ready(function(){
+  $('select').formSelect();
+  $('[data-errors]').each(function(key, value){
+    var errors = $(value).data("errors") || [];
+    errors.forEach(function(error){
+      M.toast({html: error})
+    })
   })
-}
+});

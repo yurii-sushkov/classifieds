@@ -3,16 +3,7 @@
     <div class="container">
       <div class="card-panel">
         <h5 class="center"><%= @category.new_record? ? 'New Basic Category' : 'Edit Basic Category'%></h5>
-        <% if @category.errors.any? %>
-          <div class="card-panel grey lighten-4 z-depth-0">
-            <ul>
-              <% @category.errors.full_messages.each do |message| %>
-                <li><span class="red-text"><%= message %></span></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
-        <%= form_for @category do |f|%>
+        <%= form_for @category, data: { errors: @category.errors.full_messages } do |f|%>
           <div class="input-field">
             <%= f.text_field :title, autofocus: true %>
             <%= f.label :title %>
@@ -21,6 +12,14 @@
             <%= f.text_field :description %>
             <%= f.label :description %>
           </div>
+          <% if !(@category.new_record?) %>
+            <h5>Subcategories list</h5>
+            <ul>
+              <% @category.subcategories.each do |subcategory| %>
+                <li><%= subcategory.title %></li>
+              <% end %>
+            </ul>
+          <% end %>
           <div class="input-field">
             <%= f.button('<i class="material-icons right">arrow_forward</i>Submit'.html_safe,
                       class: 'btn lighten-2 waves-effect waves-light') %>
