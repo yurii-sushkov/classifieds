@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   require "execjs"
   before_action :set_category, only: [:show, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :edit, :update]
 
   def index
     @categories = Category.all
