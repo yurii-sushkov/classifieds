@@ -4,7 +4,7 @@
         <div class="col s12 m3">
           <div class="card grey lighten-3 z-depth-1">
             <div class="card-content">
-              <span class="card-title"><b><%= category.title %></b></span>
+              <span class="card-title"><b><%= category.title %></b> <%= link_to '<i class="material-icons tiny">edit</i>'.html_safe, edit_category_path(category.id) %></span>
                 <% category.subcategories.each do |subcategory| %>
                   <p><%= link_to subcategory.title, '#', class: 'subcategory-list' %></p>
                 <% end %>
