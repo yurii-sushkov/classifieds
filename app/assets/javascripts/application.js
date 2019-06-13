@@ -18,12 +18,15 @@
 //= require materialize
 
 document.addEventListener('turbolinks:load', function() {
-  var elems = document.querySelectorAll('.sidenav');
-  var instances = M.Sidenav.init(elems, { draggable: true });
+  var elem0 = document.querySelectorAll('.sidenav');
+  var elem1 = document.querySelectorAll('.dropdown-trigger');
+  var instance0 = M.Sidenav.init(elem0, { draggable: true });
+  var instance1 = M.Dropdown.init(elem1);
 });
 
 document.addEventListener("turbolinks:before-cache", function() {
   jQuery('.sidenav').sidenav('destroy');
+  jQuery('.dropdown-trigger').dropdown('destroy');
 });
 
 $(document).ready(function(){
