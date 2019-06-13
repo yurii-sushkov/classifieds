@@ -5,16 +5,27 @@
     <li class="divider"></li>
     <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
   </ul>
-  <nav>
+  <ul id="dropdown2" class="dropdown-content">
+    <li><a href="#!">My Ads</a></li>
+    <li><a href="#!">Account</a></li>
+    <li class="divider"></li>
+    <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+  </ul>
+  <nav id="ass">
     <div class="nav-wrapper">
       <a href="#" class="brand-logo right">UKI ADS</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="hide-on-med-and-down">
         <li><%= link_to 'Home', categories_path %></li>
         <% if current_user %>
-          <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><%= current_user.email %><i class="material-icons right">arrow_drop_down</i></a></li>
+          <li>
+            <a class="dropdown-trigger" href="#!" data-target="dropdown1">
+              <%= current_user.email %>
+              <i class="material-icons right">arrow_drop_down</i>
+            </a>
+          </li>
         <% else %>
-          <li><%= link_to 'Login', new_user_session_path %>></li>
+          <li><%= link_to 'Login', new_user_session_path %></li>
         <% end %>
         <li><%= link_to 'New Category', new_category_path %></li>
       </ul>
@@ -22,6 +33,16 @@
   </nav>
   <ul class="sidenav" id="mobile-demo">
     <li><%= link_to 'Home', categories_path %></li>
+    <% if current_user %>
+      <li>
+        <a class="dropdown-trigger" href="#!" data-target="dropdown2">
+          Account
+          <i class="material-icons right">arrow_drop_down</i>
+        </a>
+      </li>
+    <% else %>
+      <li><%= link_to 'Login', new_user_session_path %></li>
+    <% end %>
     <li><%= link_to 'New Category', new_category_path %></li>
   </ul>
 </header>
