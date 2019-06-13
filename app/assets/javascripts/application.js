@@ -31,6 +31,7 @@ document.addEventListener("turbolinks:before-cache", function() {
 
 $(document).ready(function(){
   $('select').formSelect();
+  $('input#input_text, textarea#textarea').characterCounter();
   $('[data-errors]').each(function(key, value){
     var errors = $(value).data("errors") || [];
     errors.forEach(function(error){
