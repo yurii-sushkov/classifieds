@@ -1,0 +1,9 @@
+<div class="container">
+  <% @subcategory.advertisements.each do |advertisement| %>
+    <div>
+      <div><b><%= advertisement.title %></b></div>
+      <small><%= advertisement.author %></small>
+      <div><%= advertisement.text %></div>
+    </div>
+  <% end %>
+</div>

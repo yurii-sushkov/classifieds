@@ -1,5 +1,6 @@
 class SubcategoriesController < ApplicationController
   before_action :set_subcategory, only: [:show, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :edit, :update]
 
   def index
     @subcategories = Category.find(params[:id]).subcategories.all

@@ -1,13 +1,13 @@
 <header>
   <ul id="dropdown1" class="dropdown-content">
     <li><a href="#!">My Ads</a></li>
-    <li><a href="#!">Account</a></li>
+    <li><%= link_to 'Account', user_path(current_user.id) %></li>
     <li class="divider"></li>
     <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
   </ul>
   <ul id="dropdown2" class="dropdown-content">
     <li><a href="#!">My Ads</a></li>
-    <li><a href="#!">Account</a></li>
+    <li><%= link_to 'Account', user_path(current_user.id) %></li>
     <li class="divider"></li>
     <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
   </ul>
@@ -20,7 +20,7 @@
         <% if current_user %>
           <li>
             <a class="dropdown-trigger" href="#!" data-target="dropdown1">
-              <%= current_user.email %>
+              <%= current_user.name %>
               <i class="material-icons right">arrow_drop_down</i>
             </a>
           </li>

@@ -35,6 +35,7 @@ $(document).ready(function(){
   $('[data-errors]').each(function(key, value){
     var errors = $(value).data("errors") || [];
     errors.forEach(function(error){
+      console.log(error);
       M.toast({html: error})
     })
   })
