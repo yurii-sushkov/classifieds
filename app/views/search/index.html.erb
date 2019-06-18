@@ -1,11 +1,21 @@
-<% @advertisements.each do |advertisement| %>
-  <div>
-    <%= advertisement.title %>
+<div class="container">
+  <div class="row">
+    <% @advertisements.each do |advertisement| %>
+      <div class="col s12">
+        <div class="card grey lighten-5 z-depth-1">
+          <div class="card-content">
+            <span class="card-title">
+              <b><%= advertisement.title %></b>
+            </span>
+            <div>
+              <%= advertisement.text %>
+            </div>
+            <div>
+              <%= link_to advertisement.author, user_path(advertisement.user_id) %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
-  <div>
-    <%= advertisement.text %>
-  </div>
-  <div>
-    <%= advertisement.author %>
-  </div>
-<% end %>
+</div>
