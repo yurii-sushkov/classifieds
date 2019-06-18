@@ -36,6 +36,12 @@
           <li><%= link_to 'New Category', new_category_path %></li>
         <% end %>
         <li>
+          <%= form_tag(search_path, method: "get") do %>
+          <%= text_field_tag :search, nil, placeholder: "Search ...", class: "form-control" %>
+          <%= submit_tag "", style: "display: none;" %>
+          <% end %>
+        </li>
+        <!--<li>
           <div class="center row">
             <div class="col s12 " >
               <div class="row" id="topbarsearch">
@@ -46,7 +52,7 @@
               </div>
             </div>
           </div>
-        </li>
+        </li>-->
       </ul>
       <div class="hide-on-large-only">
       <div class="mobile-search-panel">
