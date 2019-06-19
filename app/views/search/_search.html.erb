@@ -1,16 +1,15 @@
 <div class="container">
-  <% if @subcategory.advertisements.length < 1 %>
+  <% if @advertisements.length < 1 %>
     <div class="center">
-        <%= "Наразі в категорії \'#{@subcategory.title}\' немає оголошень." %>
-        <br />
-        <br />
-        <br />
-        <br />
-        <%= link_to("Go to main page", root_path, :class => 'btn lighten-2 waves-effect waves-light') %>
+      <% if @search_by_user %>
+        Список порожній.
+      <% else %>
+        На жаль, пошук не дав результатів. Спробуйте змінити параметри пошуку.
+      <% end %>
     </div>
   <% end %>
   <div class="row">
-    <% @subcategory.advertisements.each do |advertisement| %>
+    <% @advertisements.each do |advertisement| %>
       <div class="col s12">
         <div class="card grey lighten-5 z-depth-1">
           <div class="card-content">

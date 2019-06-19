@@ -2,6 +2,7 @@ class Advertisement < ApplicationRecord
   include     PgSearch
 
   pg_search_scope :search, against: %i(title text)
+  pg_search_scope :search_by_user, against: :user_id
   belongs_to  :subcategory
   belongs_to  :user
   validates   :title, presence: true, length: { minimum: 5, maximum: 30 }
