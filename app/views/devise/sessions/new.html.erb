@@ -3,7 +3,13 @@
     <div class="container">
       <div class="card-panel">
         <h2 class="center">Log in</h2>
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { error: flash[:alert] }) do |f| %>
+          <% if resource.errors.any? %>
+            <%= 'hello' %>
+          <% else %>
+            <%= 'bye' %>
+          <% end %>
+
           <div class="input-field">
             <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
             <%= f.label :email %>
