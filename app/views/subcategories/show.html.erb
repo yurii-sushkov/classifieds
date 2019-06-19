@@ -17,6 +17,11 @@
             <span class="card-title">
               <b><%= advertisement.title %></b>
             </span>
+            <small>
+              <%= link_to advertisement.category, root_path %>
+              >
+              <%= link_to advertisement.subcategory, category_subcategory_path(advertisement.category_id, advertisement.subcategory_id) %>
+            </small>
             <div>
               <%= advertisement.text %>
             </div>
