@@ -8,8 +8,10 @@
               <b>
                 <%= category.title %>
               </b>
-              <%= link_to '<i class="material-icons tiny">edit</i>'.html_safe,
-                  edit_category_path(category.id) %>
+              <% if current_user and current_user.admin %>
+                <%= link_to '<i class="material-icons tiny">edit</i>'.html_safe,
+                    edit_category_path(category.id) %>
+              <% end %>
             </span>
             <% category.subcategories.each do |subcategory| %>
               <p><%= link_to subcategory.title, category_subcategory_path(category.id, subcategory.id), class: 'subcategory-list' %></p>

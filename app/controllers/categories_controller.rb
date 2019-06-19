@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
-  require "execjs"
+  include ApplicationHelper
   before_action :set_category, only: [:show, :edit, :update]
+  before_action :is_user_admin?, only: [:new, :edit, :update]
   before_action :authenticate_user!, only: [:new, :edit, :update]
 
   def index
