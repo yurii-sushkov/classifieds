@@ -29,7 +29,7 @@ document.addEventListener("turbolinks:before-cache", function() {
   jQuery('.dropdown-trigger').dropdown('destroy');
 });
 
-$(document).ready(function(){
+$(document).on('turbolinks:load', function(){
   $('select').formSelect();
   $('input#input_text, textarea#textarea').characterCounter();
   $('[data-error]').each(function(key, value){

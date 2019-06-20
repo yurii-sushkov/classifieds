@@ -22,6 +22,7 @@
                 </li>
               <% end %>
             </ul>
+            <%= link_to 'Add Subcategory', new_category_subcategory_path(@category.id) %>
           <% end %>
           <div class="input-field">
             <%= f.button('<i class="material-icons right">arrow_forward</i>Submit'.html_safe,

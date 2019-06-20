@@ -17,7 +17,7 @@
   </ul>
   <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo right">UKI ADS</a>
+      <!--<a href="#" class="brand-logo right">UKI ADS</a>-->
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="hide-on-med-and-down">
         <li><%= link_to 'Home', categories_path %></li>
@@ -36,17 +36,7 @@
           <li><%= link_to 'New Category', new_category_path %></li>
         <% end %>
         <li>
-          <div class="row">
-            <%= form_tag(search_index_path, method: "get", class: "col s12") do %>
-              <div class="input-field col s6">
-                <%= text_field_tag :search, nil, placeholder: "Search ...", class: "form-control" %>
-              </div>
-              <div class="input-field col s6">
-                <%= button_tag('<i class="white-text material-icons tiny">search</i>'.html_safe,
-                    class: 'btn-flat btn-large blue-grey darken-3 waves-effect waves-light') %>
-              </div>
-            <% end %>
-          </div>
+
         </li>
         <!--<li>
           <div class="center row">
@@ -61,12 +51,26 @@
           </div>
         </li>-->
       </ul>
+      <div class="right hide-on-med-and-down">
+        <div class="row right">
+          <%= form_tag(search_index_path, method: "get", class: "col s12") do %>
+            <div class="col s3"></div>
+            <div class="input-field col s6">
+              <%= text_field_tag :search, nil, placeholder: "Search ...", class: "form-control white-text" %>
+            </div>
+            <div class="input-field col s3">
+                <%= button_tag('<span class="search-button"><i id="search-button" class="white-text material-icons">search</i></span>'.html_safe,
+                    class: 'btn-large blue-grey darken-4 waves-effect waves-light') %>
+            </div>
+          <% end %>
+        </div>
+      </div>
       <div class="hide-on-large-only">
         <div class="mobile-search-panel">
           <div class="row">
             <%= form_tag(search_index_path, method: "get", class: "col s10") do %>
               <div class="input-field col s5">
-                <%= text_field_tag :search, nil, placeholder: "Search ...", class: "form-control" %>
+                <%= text_field_tag :search, nil, placeholder: "Search ...", class: "form-control white-text" %>
               </div>
               <div class="input-field col s5">
                 <%= button_tag('<i class="white-text material-icons tiny">search</i>'.html_safe,

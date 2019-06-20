@@ -13,6 +13,10 @@
             <%= f.label :description %>
           </div>
           <div class="input-field">
+            <%= f.collection_select(:category_id, Category.all, :id, :title) %>
+            <%= f.label :category_id %>
+          </div>
+          <div class="input-field">
             <%= f.button('<i class="material-icons right">arrow_forward</i>Submit'.html_safe,
                       class: 'btn lighten-2 waves-effect waves-light') %>
           </div>
