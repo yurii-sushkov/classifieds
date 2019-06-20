@@ -1,6 +1,6 @@
 class AdvertisementsController < ApplicationController
-  before_action :set_advertisement, only: [:show, :edit, :update]
-  before_action :authenticate_user!, only: [:new, :edit, :update]
+  before_action :set_advertisement, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   def index
     @advertisements = Advertisement.all
@@ -24,15 +24,23 @@ class AdvertisementsController < ApplicationController
 
   def show; end
 
-  def edit; end
+  def edit
+    @subcategories = Category.all.collect { |category| [category.title, category.subcategories.collect { |v| [v.title, v.id] } ] }
+  end
 
   def update
-    if @advertisement.save
+    @subcategories = Category.all.collect { |category| [category.title, category.subcategories.collect { |v| [v.title, v.id] } ] }
+    if @advertisement.update(advertisement_params)
       flash[:notice] = "A new advertisement has been created!"
       redirect_to root_path
     else
       render 'new'
     end
+  end
+
+  def destroy
+    @advertisement.destroy
+    redirect_to root_path
   end
 
   private

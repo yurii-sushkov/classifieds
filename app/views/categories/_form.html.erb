@@ -18,7 +18,10 @@
               <% @category.subcategories.each do |subcategory| %>
                 <li><%= subcategory.title %>
                   <%= link_to '<i class="material-icons tiny">edit</i>'.html_safe, edit_category_subcategory_path(@category.id, subcategory.id) %>
-                  <%= link_to '<i class="red-text material-icons tiny">delete_forever</i>'.html_safe, root_path %>
+                  <%= link_to '<i class="red-text material-icons tiny">delete_forever</i>'.html_safe,
+                      category_subcategory_path(@category.id, subcategory.id),
+                      data: { confirm: "Are you sure? All ads of this category will be destroyed." },
+                      method: "delete" %>
                 </li>
               <% end %>
             </ul>

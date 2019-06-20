@@ -17,10 +17,15 @@
             <span class="card-title">
               <b><%= advertisement.title %></b>
             </span>
+            <% if current_user and current_user.id == advertisement.user_id %>
+              <%= link_to 'Edit', edit_advertisement_path(advertisement.id) %>
+              <%= link_to 'Destroy', advertisement_path(advertisement.id), data: { confirm: "Are you sure?", method: "delete" } %>
+              <br>
+            <% end %>
             <small>
               <%= link_to advertisement.category, root_path %>
               >
-              <%= link_to advertisement.subcategory, category_subcategory_path(advertisement.category_id, advertisement.subcategory_id) %>
+              <%= link_to advertisement.subcategory_title, category_subcategory_path(advertisement.category_id, advertisement.subcategory_id) %>
             </small>
             <div>
               <%= advertisement.text %>

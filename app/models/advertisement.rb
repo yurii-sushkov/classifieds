@@ -24,7 +24,7 @@ class Advertisement < ApplicationRecord
     Category.find(Subcategory.find(subcategory_id).category_id).title
   end
 
-  def subcategory
+  def subcategory_title
     Subcategory.find(subcategory_id).title
   end
 end

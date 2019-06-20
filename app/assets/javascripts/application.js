@@ -22,26 +22,24 @@ document.addEventListener('turbolinks:load', function() {
   var elem1 = document.querySelectorAll('.dropdown-trigger');
   var instance0 = M.Sidenav.init(elem0, { draggable: true });
   var instance1 = M.Dropdown.init(elem1);
-});
 
-document.addEventListener("turbolinks:before-cache", function() {
-  jQuery('.sidenav').sidenav('destroy');
-  jQuery('.dropdown-trigger').dropdown('destroy');
-});
-
-$(document).on('turbolinks:load', function(){
   $('select').formSelect();
   $('input#input_text, textarea#textarea').characterCounter();
   $('[data-error]').each(function(key, value){
-    var error = $(value).data("error") || [];
+    let error = $(value).data("error") || [];
     console.log(error);
     M.toast({html: error})
   })
   $('[data-errors]').each(function(key, value){
-    var errors = $(value).data("errors") || [];
+    let errors = $(value).data("errors") || [];
     errors.forEach(function(error){
       console.log(error);
       M.toast({html: error})
     })
   })
+});
+
+document.addEventListener("turbolinks:before-cache", function() {
+  jQuery('.sidenav').sidenav('destroy');
+  jQuery('.dropdown-trigger').dropdown('destroy');
 });

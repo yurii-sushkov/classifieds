@@ -11,6 +11,10 @@
               <% if current_user and current_user.admin %>
                 <%= link_to '<i class="material-icons tiny">edit</i>'.html_safe,
                     edit_category_path(category.id) %>
+                <%= link_to '<i class="material-icons tiny">delete_forever</i>'.html_safe,
+                    category_path(category.id),
+                    data: { confirm: "Are you sure? All of dependent ads will be destroyed forever." },
+                    method: "delete" %>
               <% end %>
             </span>
             <% category.subcategories.each do |subcategory| %>

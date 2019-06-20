@@ -1,8 +1,8 @@
 class SubcategoriesController < ApplicationController
   include ApplicationHelper
-  before_action :set_subcategory, only: [:show, :edit, :update]
-  before_action :is_user_admin?, only: [:new, :edit, :update]
-  before_action :authenticate_user!, only: [:new, :edit, :update]
+  before_action :set_subcategory, only: [:show, :edit, :update, :destroy]
+  before_action :is_user_admin?, only: [:new, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   def index
     @subcategories = Category.find(params[:id]).subcategories.all
@@ -33,6 +33,11 @@ class SubcategoriesController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def destroy
+    @subcategory.destroy
+    redirect_to root_path
   end
 
   private
