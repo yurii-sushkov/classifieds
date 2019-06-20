@@ -15,7 +15,7 @@ class SubcategoriesController < ApplicationController
   def create
     @subcategory = Subcategory.new(subcategory_params)
     if @subcategory.save
-      # flash[:notice] = "Subcategory #{@subcategory.title} has been added to #{Category.find(@subcategory.category_id).title} category"
+      flash[:notice] = "Subcategory #{@subcategory.title} has been added to #{Category.find(@subcategory.category_id).title} category"
       redirect_to edit_category_path(@subcategory.category_id)
     else
       render 'new'
@@ -28,7 +28,7 @@ class SubcategoriesController < ApplicationController
 
   def update
     if @subcategory.update(subcategory_params)
-      flash[:notice] = "Subcategory #{@subcategory.title} has been added to #{Category.find(@subcategory.category_id).title} category"
+      flash[:notice] = "Subcategory #{@subcategory.title} has been updated"
       redirect_to edit_category_path(@subcategory.category_id)
     else
       render 'new'
@@ -36,6 +36,7 @@ class SubcategoriesController < ApplicationController
   end
 
   def destroy
+    flash[:notice] = "Subcategory has been destroyed."
     @subcategory.destroy
     redirect_to root_path
   end

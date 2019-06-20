@@ -31,7 +31,7 @@ class AdvertisementsController < ApplicationController
   def update
     @subcategories = Category.all.collect { |category| [category.title, category.subcategories.collect { |v| [v.title, v.id] } ] }
     if @advertisement.update(advertisement_params)
-      flash[:notice] = "A new advertisement has been created!"
+      flash[:notice] = "A new advertisement has been updated!"
       redirect_to root_path
     else
       render 'new'
@@ -39,6 +39,7 @@ class AdvertisementsController < ApplicationController
   end
 
   def destroy
+    flash[:notice] = "Advertisement has been destroyed"
     @advertisement.destroy
     redirect_to root_path
   end

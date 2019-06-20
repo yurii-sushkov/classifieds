@@ -1,5 +1,6 @@
 <div class="container">
   <div class="row">
+    <%= content_tag(:div, "", data: { error: flash[:notice] }) %>
     <% @categories.each do |category| %>
       <div class="col s12 m6 l3">
         <div class="card grey lighten-4 z-depth-1">
@@ -11,7 +12,7 @@
               <% if current_user and current_user.admin %>
                 <%= link_to '<i class="material-icons tiny">edit</i>'.html_safe,
                     edit_category_path(category.id) %>
-                <%= link_to '<i class="material-icons tiny">delete_forever</i>'.html_safe,
+                <%= link_to '<i class="material-icons tiny red-text">delete_forever</i>'.html_safe,
                     category_path(category.id),
                     data: { confirm: "Are you sure? All of dependent ads will be destroyed forever." },
                     method: "delete" %>
