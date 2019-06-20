@@ -80,6 +80,9 @@ test:
 #
 production:
   <<: *default
-  database: classifieds_production
-  username: classifieds
-  password: <%= ENV['CLASSIFIEDS_DATABASE_PASSWORD'] %>
+  database: d754gh8rcfdj0c
+  username: dndwyknmvylctk
+  password: a3cd1f29578868d1a800756895c28de54d2b366156d0ee532bf2d9abac33e053
+  host: ec2-174-129-27-3.compute-1.amazonaws.com
+  sslmode: require
+# <%= ENV['CLASSIFIEDS_DATABASE_PASSWORD'] %>
