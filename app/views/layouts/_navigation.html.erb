@@ -65,11 +65,11 @@
           <% end %>
         </div>
       </div>
-      <div class="hide-on-large-only col s8">
+      <div class="hide-on-large-only col s10">
         <div class="mobile-search-panel">
           <div class="row">
             <%= form_tag(search_index_path, method: "get") do %>
-              <div class="input-field col s6">
+              <div class="input-field col s8">
                 <%= text_field_tag :search, nil, placeholder: "Search ...", class: "form-control white-text" %>
               </div>
               <div class="input-field col s2">
