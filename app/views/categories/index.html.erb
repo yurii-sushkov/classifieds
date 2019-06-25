@@ -7,8 +7,7 @@
           <div class="card-content">
             <span class="card-title">
               <b>
-                <%= category.title %><br>
-                <%= category.description %>
+                <%= category.title %>
               </b>
               <% if current_user and current_user.admin %>
                 <%= link_to '<i class="material-icons tiny">edit</i>'.html_safe,
@@ -18,6 +17,8 @@
                     data: { confirm: "Are you sure? All of dependent ads will be destroyed forever." },
                     method: "delete" %>
               <% end %>
+              <b><br>
+              <%= category.eng_title %></b>
             </span>
             <% category.subcategories.each do |subcategory| %>
               <p><%= link_to subcategory.title, category_subcategory_path(category.id, subcategory.id), class: 'subcategory-list' %></p>
