@@ -8,12 +8,12 @@ class AdvertisementsController < ApplicationController
 
   def new
     @advertisement = Advertisement.new
-    @subcategories = Category.all.collect { |category| [category.title, category.subcategories.collect { |v| [v.title, v.id] } ] }
+    @categories = Category.all.collect { |category| category.title }
   end
 
   def create
     @advertisement = Advertisement.new(advertisement_params)
-    @subcategories = Category.all.collect { |category| [category.title, category.subcategories.collect { |v| [v.title, v.id] } ] }
+    @categories = Category.all.collect { |category| category.title }
     if @advertisement.save
       flash[:notice] = "A new advertisement has been created!"
       redirect_to root_path
@@ -25,11 +25,11 @@ class AdvertisementsController < ApplicationController
   def show; end
 
   def edit
-    @subcategories = Category.all.collect { |category| [category.title, category.subcategories.collect { |v| [v.title, v.id] } ] }
+    @categories = Category.all.collect { |category| category.title }
   end
 
   def update
-    @subcategories = Category.all.collect { |category| [category.title, category.subcategories.collect { |v| [v.title, v.id] } ] }
+    @categories = Category.all.collect { |category| category.title }
     if @advertisement.update(advertisement_params)
       flash[:notice] = "A new advertisement has been updated!"
       redirect_to root_path

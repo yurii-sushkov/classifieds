@@ -18,11 +18,11 @@ ActiveRecord::Schema.define(version: 2019_06_25_144948) do
   create_table "advertisements", force: :cascade do |t|
     t.string "title"
     t.string "text"
-    t.bigint "subcategory_id"
+    t.bigint "category_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["subcategory_id"], name: "index_advertisements_on_subcategory_id"
+    t.index ["category_id"], name: "index_advertisements_on_category_id"
     t.index ["user_id"], name: "index_advertisements_on_user_id"
   end
 
@@ -32,15 +32,6 @@ ActiveRecord::Schema.define(version: 2019_06_25_144948) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "eng_title"
-  end
-
-  create_table "subcategories", force: :cascade do |t|
-    t.bigint "category_id"
-    t.string "title"
-    t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_subcategories_on_category_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -5,7 +5,7 @@
         <h5 class="center"><%= @advertisement.new_record? ? 'New Advertisement' : 'Edit Advertisement'%></h5>
         <%= form_for @advertisement, data: { errors: @advertisement.errors.full_messages } do |f| %>
           <div class="input-field">
-            <%= f.text_field :title, autofocus: true %>
+            <%= f.text_field :title, autofocus: true, id: "input_text", data: { length: "20" } %>
             <%= f.label :title %>
           </div>
           <div class="input-field">
@@ -13,8 +13,8 @@
             <%= f.label :text %>
           </div>
           <div class="input-field">
-            <%= f.select :subcategory_id, grouped_options_for_select(@subcategories) %>
-            <%= f.label :subcategory_id %>
+            <%= f.select :category_id, options_for_select(@categories) %>
+            <%= f.label :category_id %>
           </div>
           <div class="input-field">
             <%= f.button('<i class="material-icons right">arrow_forward</i>Submit'.html_safe,

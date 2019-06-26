@@ -20,9 +20,6 @@
               <b><br>
               <%= category.eng_title %></b>
             </span>
-            <% category.subcategories.each do |subcategory| %>
-              <p><%= link_to subcategory.title, category_subcategory_path(category.id, subcategory.id), class: 'subcategory-list' %></p>
-            <% end %>
           </div>
         </div>
       </div>
