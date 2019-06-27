@@ -1,9 +1,11 @@
-<div class="container">
+<div class="container center">
   <div class="row">
     <%= content_tag(:div, "", data: { error: flash[:notice] }) %>
     <% @categories.each do |category| %>
-      <div class="col s12 m6 l3">
-        <div class="card grey lighten-4 z-depth-1">
+      <div class="col s12 m6 l4">
+        <%= link_to category, :action => 'go' do %>
+        <div class="card small grey lighten-4 z-depth-1">
+          <div class="category-list">
           <div class="card-content">
             <span class="card-title">
               <b>
@@ -20,8 +22,17 @@
               <b><br>
               <%= category.eng_title %></b>
             </span>
+            <div class="card-action">
+              <p><%= truncate(category.description, :length => 55) %></p>
+              <br>
+              <div class="category-icon">
+                <i class="large material-icons"><%= category.icon %></i>
+              </div>
+            </div>
           </div>
         </div>
+        </div>
+        <% end %>
       </div>
     <% end %>
   </div>
