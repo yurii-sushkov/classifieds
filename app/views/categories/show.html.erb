@@ -1,0 +1,43 @@
+<div class="container">
+  <% if @category.advertisements.length < 1 %>
+    <div class="center">
+      <% if @search_by_user %>
+        Список порожній.
+      <% else %>
+        На жаль, пошук не дав результатів. Спробуйте змінити параметри пошуку.
+      <% end %>
+      <br />
+      <br />
+      <br />
+      <br />
+      <%= link_to("Go to main page", root_path, :class => 'btn lighten-2 waves-effect waves-light') %>
+    </div>
+  <% end %>
+  <div class="row">
+    <% @category.advertisements.each do |advertisement| %>
+      <div class="col s12">
+        <div class="card grey lighten-5 z-depth-1">
+          <div class="card-content">
+            <span class="card-title">
+              <b><%= advertisement.title %></b>
+            </span>
+            <% if current_user and advertisement.user_id == current_user.id %>
+              <%= link_to 'Edit', edit_advertisement_path(advertisement.id) %>
+              <%= link_to 'Destroy', advertisement_path(advertisement.id), data: { confirm: "Are you sure?" }, method: "delete" %>
+              <br>
+            <% end %>
+            <small>
+              <%= link_to advertisement.category_title, root_path %>
+            </small>
+            <div>
+              <%= advertisement.text %>
+            </div>
+            <div>
+              <%= link_to advertisement.author, user_path(advertisement.user_id) %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
