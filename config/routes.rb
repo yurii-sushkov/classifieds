@@ -5,11 +5,7 @@ Rails.application.routes.draw do
   }
   root 'categories#index'
 
-  scope shallow_path: "sekret" do
-    resources :categories do
-      resources :subcategories
-    end
-  end
+  resources :categories
 
   resources :advertisements
 

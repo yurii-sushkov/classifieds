@@ -27,9 +27,7 @@
               <br>
             <% end %>
             <small>
-              <%= link_to advertisement.category, root_path %>
-              >
-              <%= link_to advertisement.subcategory_title, category_subcategory_path(advertisement.category_id, advertisement.subcategory_id) %>
+              <%= link_to advertisement.category_title, root_path %>
             </small>
             <div>
               <%= advertisement.text %>

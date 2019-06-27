@@ -15,4 +15,8 @@ class Advertisement < ApplicationRecord
   def author_email
     User.find(user_id).email
   end
+
+  def category_title
+    Category.find(category_id).title
+  end
 end
