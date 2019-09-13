@@ -1,6 +1,6 @@
 class AdvertisementsController < ApplicationController
-  before_action :set_advertisement, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
+  before_action :set_advertisement, only: %i[show edit update destroy]
+  before_action :authenticate_user!, only: %i[new edit update destroy]
 
   def index
     @advertisements = Advertisement.all
@@ -15,7 +15,7 @@ class AdvertisementsController < ApplicationController
     @advertisement = Advertisement.new(advertisement_params)
     @categories = Category.all.collect { |category| [category.title, category.id] }
     if @advertisement.save
-      flash[:notice] = "A new advertisement has been created!"
+      flash[:notice] = 'A new advertisement has been created!'
       redirect_to root_path
     else
       render 'new'
@@ -31,7 +31,7 @@ class AdvertisementsController < ApplicationController
   def update
     @categories = Category.all.collect { |category| [category.title, category.id] }
     if @advertisement.update(advertisement_params)
-      flash[:notice] = "A new advertisement has been updated!"
+      flash[:notice] = 'A new advertisement has been updated!'
       redirect_to root_path
     else
       render 'new'
@@ -39,7 +39,7 @@ class AdvertisementsController < ApplicationController
   end
 
   def destroy
-    flash[:notice] = "Advertisement has been destroyed"
+    flash[:notice] = 'Advertisement has been destroyed'
     @advertisement.destroy
     redirect_to root_path
   end

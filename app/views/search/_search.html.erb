@@ -21,19 +21,19 @@
             <span class="card-title">
               <b><%= advertisement.title %></b>
             </span>
-            <% if current_user and advertisement.user_id == current_user.id %>
+            <% if current_user and advertisement.user == current_user %>
               <%= link_to 'Edit', edit_advertisement_path(advertisement.id) %>
               <%= link_to 'Destroy', advertisement_path(advertisement.id), data: { confirm: "Are you sure?" }, method: "delete" %>
               <br>
             <% end %>
             <small>
-              <%= link_to advertisement.category_title, root_path %>
+              <%= link_to advertisement.category.title, root_path %>
             </small>
             <div>
               <%= advertisement.text %>
             </div>
             <div>
-              <%= link_to advertisement.author, user_path(advertisement.user_id) %>
+              <%= link_to advertisement.user.name, user_path(advertisement.user_id) %>
             </div>
           </div>
         </div>

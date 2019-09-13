@@ -1,8 +1,8 @@
 class CategoriesController < ApplicationController
   include ApplicationHelper
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
-  before_action :is_user_admin?, only: [:new, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
+  before_action :set_category, only: %i[show edit update destroy]
+  before_action :is_user_admin?, only: %i[new edit update destroy]
+  before_action :authenticate_user!, only: %i[new edit update destroy]
 
   def index
     @categories = Category.all
@@ -37,7 +37,7 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    flash[:notice] = "Category has been destroyed"
+    flash[:notice] = 'Category has been destroyed'
     @category.destroy
     redirect_to root_path
   end
