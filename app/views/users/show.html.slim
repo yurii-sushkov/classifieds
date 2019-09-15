@@ -1,0 +1,18 @@
+.container
+  .row
+    .col.s12
+      .card.grey.lighten-4.z-depth-1
+        .card-content.center
+          span.card-title
+            b= @user.name
+          small= @user.email
+          - if current_user && current_user.id == @user.id
+            p= link_to 'Edit Account', edit_user_registration_path(@user.id)
+          - if current_user and current_user.id == @user.id
+            p= link_to "My advertisements", search_path(@user.id)
+          - else
+            p= link_to "# @user.name.split(' ')[0] \'s advertisements", search_path(@user.id)
+          p
+            | Created: #{distance_of_time_in_words_to_now(@user.created_at)} ago
+          p
+            | Updated: #{distance_of_time_in_words_to_now(@user.updated_at)} ago

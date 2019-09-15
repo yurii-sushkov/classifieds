@@ -1,0 +1,29 @@
+.container
+  - if @advertisements.length < 1
+    .center
+      - if @search_by_user
+        | Список порожній.
+      - else
+        | На жаль, пошук не дав результатів. Спробуйте змінити параметри пошуку.
+      br/
+      br/
+      br/
+      br/
+      = link_to("Go to main page", root_path, :class => 'btn lighten-2 waves-effect waves-light')
+  .row
+    - @advertisements.each do |advertisement|
+      .col.s12
+        .card.grey.lighten-5.hoverable
+          .card-content
+            span.card-title
+              b= advertisement.title
+            - if current_user and advertisement.user == current_user
+              = link_to 'Edit', edit_advertisement_path(advertisement.id)
+              = link_to 'Destroy', advertisement_path(advertisement.id), data: { confirm: "Are you sure?" }, method: "delete"
+              br/
+            small
+              = link_to advertisement.category.title, root_path
+            div
+              = advertisement.text
+            div
+              = link_to advertisement.user.name, user_path(advertisement.user_id)
