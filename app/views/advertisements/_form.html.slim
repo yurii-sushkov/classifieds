@@ -1,0 +1,18 @@
+.container
+  .row
+    .container
+      .card-panel
+        h5.center= @advertisement.new_record? ? 'New Advertisement' : 'Edit Advertisement'
+        = form_for @advertisement, data: { errors: @advertisement.errors.full_messages } do |f|
+          .input-field
+            = f.text_field :title, autofocus: true, id: "input_text", data: { length: "30" }
+            = f.label :title
+          .input-field
+            = f.text_area :text, id: "textarea", class: "materialize-textarea", data: { length: "120" }
+            = f.label :text
+          .input-field
+            = f.select :category_id, options_for_select(@categories)
+            = f.label :category_id
+          .input-field
+            = f.button('<i class="material-icons right">arrow_forward</i>Submit'.html_safe, \
+              class: 'btn lighten-2 waves-effect waves-light')

@@ -1,0 +1,23 @@
+.container
+  .row
+    .container
+      .card-panel
+        h5.center= @category.new_record? ? 'New Category' : 'Edit Category'
+        = form_for @category, data: { errors: @category.errors.full_messages, error: flash[:notice] } do |f|
+          .input-field
+            = f.text_field :title, autofocus: true, autocomplete: "off"
+            = f.label :title
+          .input-field
+            = f.text_field :eng_title, autofocus: true, autocomplete: "off"
+            = f.label :eng_title
+          .input-field
+            = f.text_field :description
+            = f.label :description
+          .input-field
+            = f.select :icon, ["home", "business_center", "attach_money", "local_offer"]
+            = f.label :icon
+          - if !(@category.new_record?)
+            i.center.large.material-icons= @category.icon
+          .input-field
+            = f.button('<i class="material-icons right">arrow_forward</i>Submit'.html_safe, \
+              class: 'btn lighten-2 waves-effect waves-light')
