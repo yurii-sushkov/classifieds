@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Advertisement', type: :request do
   let(:user) { Fabricate(:user) }
   let(:admin) { Fabricate(:user, admin: true) }
-  let!(:kleidung) { Fabricate(:category) }
+  let!(:kleidung) { Fabricate(:category, title: 'Kleidung') }
 
   context 'when user tries to create a new advertisement' do
     context 'and is unauthenticated' do
