@@ -7,6 +7,8 @@ class Ability
     user ||= User.new
     if user.admin?
       can :manage, :all
+    else
+      cannot :manage, Category
     end
     # Define abilities for the passed in user here. For example:
     #
