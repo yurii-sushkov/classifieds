@@ -1,0 +1,59 @@
+ul#dropdown1.dropdown-content
+  - if current_user
+    li= link_to 'My Ads', search_path(current_user.id)
+    li= link_to 'Account', user_path(current_user.id)
+    li.divider
+    li= link_to "Sign out", destroy_user_session_path, data: { confirm: 'Are you sure?' }, :method => :delete
+ul#dropdown2.dropdown-content
+  - if current_user
+    li= link_to 'My Ads', search_path(current_user.id)
+    li= link_to 'Account', user_path(current_user.id)
+    li.divider
+    li= link_to "Sign out", destroy_user_session_path, data: { confirm: 'Are you sure?' }, :method => :delete
+nav
+  .nav-wrapper
+    /! <a href="#" class="brand-logo right">UKI ADS</a
+    a.sidenav-trigger data-target="mobile-demo" href="#"
+      i.material-icons menu
+    ul.hide-on-med-and-down
+      li= link_to 'Home', categories_path
+      - if current_user
+        li
+          a.dropdown-trigger data-target="dropdown1" href="#!"
+            = current_user.name
+            i.material-icons.right arrow_drop_down
+      - else
+        li= link_to 'Login', new_user_session_path
+      li= link_to 'New Advertisement', new_advertisement_path
+      - if current_user and current_user.admin
+        li= link_to 'New Category', new_category_path
+    .right.hide-on-med-and-down
+      .row.right
+        = form_tag(search_index_path, method: "get", class: "col s12") do
+          .col.s3
+          .input-field.col.s6
+            = text_field_tag :search, nil, placeholder: "Search ...", class: "form-control white-text"
+          .input-field.col.s3
+            = button_tag('<span class="search-button"><i id="search-button" class="white-text material-icons">search</i></span>'.html_safe, \
+              class: 'btn-large blue-grey darken-4 waves-effect waves-light')
+    .hide-on-large-only.col.s8
+      .mobile-search-panel
+        .row
+          = form_tag(search_index_path, method: "get") do
+            .input-field.col.s6
+              = text_field_tag :search, nil, placeholder: "Search ...", class: "form-control white-text"
+            .input-field.col.s2
+              = button_tag('<i class="white-text material-icons tiny">search</i>'.html_safe, \
+                class: 'btn-flat btn-large blue-grey darken-3 waves-effect waves-light')
+ul#mobile-demo.sidenav
+  li= link_to 'Home', categories_path
+  - if current_user
+    li
+      a.dropdown-trigger data-target="dropdown2" href="#!"
+        | Account
+        i.material-icons.right arrow_drop_down
+  - else
+    li= link_to 'Login', new_user_session_path
+  li= link_to 'New Advertisement', new_advertisement_path
+  - if current_user and current_user.admin
+    li= link_to 'New Category', new_category_path
