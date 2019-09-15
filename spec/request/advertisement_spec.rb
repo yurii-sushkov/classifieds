@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe 'Advertisement', type: :request do
   let(:user) { Fabricate(:user) }
+  let(:another) { Fabricate(:user) }
   let(:admin) { Fabricate(:user, admin: true) }
   let!(:kleidung) { Fabricate(:category, title: 'Kleidung') }
 
@@ -21,15 +22,67 @@ describe 'Advertisement', type: :request do
       end
 
       it 'can fill and submit new advertisement form' do
-        sign_in user
-        visit new_advertisement_path
-        fill_in('input_text', with: 'Test Title')
-        fill_in('textarea', with: Faker::Name.name)
-        select(kleidung.title, from: 'advertisement_category_id')
-        click_button('Submit')
+        user_creates_ad(user, kleidung, 'Test Title')
         visit category_path(kleidung.id)
         expect(page).to have_content('Test Title')
       end
     end
+  end
+
+  context 'when one user creates his ad' do
+    context 'and tries to edit this ad' do
+      it 'is able to edit his own ad even though he is not admin' do
+        user_creates_ad(user, kleidung, 'Some Title')
+        user_edits_ad(user, Advertisement.last)
+        visit category_path(kleidung)
+        expect(page).to have_content('Text has been changed!')
+      end
+    end
+
+    context 'and other user tries to edit this ad' do
+      it 'is unable to edit this ad' do
+        user_creates_ad(user, kleidung, 'Rococo')
+        sign_in another
+        visit edit_advertisement_path(Advertisement.last.id)
+        expect(page).to have_no_content('Rococo')
+      end
+    end
+
+    context 'and admin tries to edit this ad' do
+      it 'is able to edit this ad' do
+        user_creates_ad(user, kleidung, 'Massimo Dutti')
+        sign_in admin
+        user_edits_ad(admin, Advertisement.last)
+        visit category_path(kleidung)
+        expect(page).to have_content('Text has been changed!')
+      end
+    end
+
+    context 'and unlogged user tries to edit this ad' do
+      it 'is unable to edit the ad' do
+        user_creates_ad(user, kleidung, 'Carlo Pazzolini')
+        sign_out user
+        visit edit_advertisement_path(Advertisement.last.id)
+        expect(page).to have_no_content('Carlo Pazzolini')
+      end
+    end
+  end
+
+  private
+
+  def user_creates_ad(user, category, title)
+    sign_in user
+    visit new_advertisement_path
+    fill_in('input_text', with: title)
+    fill_in('textarea', with: Faker::Name.name)
+    select(category.title, from: 'advertisement_category_id')
+    click_button('Submit')
+  end
+
+  def user_edits_ad(user, ad)
+    visit edit_advertisement_path(ad.id)
+    fill_in('input_text', with: 'Text has been changed!')
+    fill_in('textarea', with: 'Text has been changed!')
+    click_button('Submit')
   end
 end
