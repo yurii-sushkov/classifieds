@@ -1,4 +1,3 @@
-Devise::TRUE_VALUES << ["on"]
 # frozen_string_literal: true
 
 # Use this hook to configure devise mailer, warden hooks and so forth.
@@ -9,7 +8,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '0f27068331ee9cd166249471adff7ece74bf86d0b6141923428ca899cdf4a539c37f09ebd4d38cc9b7b8df309da32c940d98b02fb4bd15d99f5c166f76ad5fa1'
+  # config.secret_key = 'd483e0c72f0e3dc4c5ab4d63718b20555f296565328b1ef20c6b23ae8a0b8b93d50dc7e9a6933831dd59a7ea0586a2496f760333ee4565fbb229f0bd2d19c5d7'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -89,7 +88,7 @@ Devise.setup do |config|
   # Notice that if you are skipping storage for all authentication paths, you
   # may want to disable generating routes to Devise's sessions controller by
   # passing skip: :sessions to `devise_for` in your config/routes.rb
-  # config.skip_session_storage = [:http_auth]
+  config.skip_session_storage = [:http_auth]
 
   # By default, Devise cleans up the CSRF token on authentication to
   # avoid CSRF token fixation attacks. This means that, when using AJAX
@@ -115,7 +114,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 11
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '45992f4442ff81f9916fb8b85b18faa9f2b0659100482b6b42d7d316af5afd64eadbd24abb7946afd24d53d440cdcea696938edbb61158fc2fc10d887139d335'
+  # config.pepper = '34d306f18cebb8e5ccfacbceddff64905339aefa57524faa70d44d77c12398b91f3d09973ca862fd55482bbdeda181f17d3e55dee03613ec4eb631e9d6a83f06'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -153,13 +152,13 @@ Devise.setup do |config|
 
   # ==> Configuration for :rememberable
   # The time the user will be remembered without asking for credentials again.
-  config.remember_for = 2.weeks
+  # config.remember_for = 2.weeks
 
   # Invalidates all the remember me tokens when the user signs out.
-  config.expire_all_remember_me_on_sign_out = false
+  config.expire_all_remember_me_on_sign_out = true
 
   # If true, extends the user's remember period when remembered via cookie.
-  # config.extend_remember_period = true
+  # config.extend_remember_period = false
 
   # Options to be passed to the created cookie. For instance, you can set
   # secure: true in order to force SSL only cookies.
