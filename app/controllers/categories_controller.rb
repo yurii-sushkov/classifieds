@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CategoriesController < ApplicationController
   include ApplicationHelper
   before_action :set_category, only: %i[show edit update destroy]
@@ -43,6 +45,7 @@ class CategoriesController < ApplicationController
   end
 
   private
+
   def category_params
     params.require(:category).permit(:title, :eng_title, :description, :icon)
   end

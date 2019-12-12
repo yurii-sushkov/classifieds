@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'Advertisement', type: :request do
@@ -79,7 +81,7 @@ describe 'Advertisement', type: :request do
     click_button('Submit')
   end
 
-  def user_edits_ad(user, ad)
+  def user_edits_ad(_user, ad)
     visit edit_advertisement_path(ad.id)
     fill_in('input_text', with: 'Text has been changed!')
     fill_in('textarea', with: 'Text has been changed!')

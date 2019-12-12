@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Fabricator(:category) do
   title { Faker::Name.name[5...19] }
   description { Faker::Name.name[5...19] }

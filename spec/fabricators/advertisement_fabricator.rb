@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Fabricator(:advertisement) do
   title { Faker::Name.name[5...19] }
   text { Faker::Name.name[10...100] }
