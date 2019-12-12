@@ -1,26 +1,32 @@
 .container
-  h3 Mailbox
-  .row
+  ul.collection.with-header
+    li.collection-header
+      h4 Mailbox
     - @conversations.each do |conversation|
-      .col.s12
-        .card.grey.lighten-5.hoverable
-          .card-content
-            span.card-title
-              - if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id
-                - if conversation.sender_id == current_user.id
-                  - recipient = User.find(conversation.recipient_id)
-                - else
-                  - recipient = User.find(conversation.sender_id)
-                = link_to recipient.name, conversation_messages_path(conversation)
+      - if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id
+        li.collection-item
+          .row
+            .col.s2
+              - if conversation.sender_id == current_user.id
+                - recipient = User.find(conversation.recipient_id)
+              - else
+                - recipient = User.find(conversation.sender_id)
+              = link_to truncate(recipient.name), conversation_messages_path(conversation)
+            .col.s8
+              = truncate(conversation.messages.last.body)
+            .col.s2
+              - if !conversation.messages.last.read
+                = '<i class="material-icons tiny blue-text text-darken-2">fiber_manual_record</i>'.html_safe
+                | &ensp;
+                = conversation.messages.last.message_time
 .container
-  h3 All Users
-  .row
+  ul.collection.with-header
+    li.collection-header
+      h4 All Users
     - @users.each do |user|
       - if user.id != current_user.id
-        .col.s12
-          .card.grey.lighten-5.hoverable
-            .card-content
-              span.card-title
-                = user.name
-                | &nbsp;
-                = link_to 'Message me!', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: :post
+        .li.collection-item
+          = user.name
+          /| &nbsp;
+          .right
+            = link_to 'Write a message', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: :post
