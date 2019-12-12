@@ -1,0 +1,29 @@
+- if @over_ten
+  = link_to 'Show Previous', '?m=all'
+.container
+  - @messages.each do |message|
+    - if message.body
+      .row
+        .col.s2
+        .col.s8
+          - user = User.find(message.user_id)
+          .card.grey.lighten-5.hoverable
+            .card-content
+              span.header
+                strong = user.name
+                .right = message.message_time
+            .card-stacked
+              .card-content
+                = message.body
+.container
+  .row
+    .col.s2
+    .col.s8
+      = form_for [@conversation, @message], data: { errors: @message.errors.full_messages, error: flash[:notice] } do |f|
+        .input-field
+          = f.text_area :body
+          = f.text_field :user_id, value: current_user.id, type: 'hidden'
+        .input-field
+          /= f.submit 'Add Reply', class: 'btn lighten-2 waves-effect waves-light'
+          = f.button('<i class="material-icons right">send</i>Send'.html_safe,
+              class: 'btn lighten-2 waves-effect waves-light')
