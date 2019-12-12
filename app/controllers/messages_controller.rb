@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MessagesController < ApplicationController
   before_action { @conversation = Conversation.find(params[:conversation_id]) }
 
@@ -12,9 +14,7 @@ class MessagesController < ApplicationController
       @messages = @conversation.messages
     end
     if @messages.last
-      if @messages.last.user_id != current_user.id
-        @messages.last.read = true
-      end
+      @messages.last.read = true if @messages.last.user_id != current_user.id
     end
 
     @message = @conversation.messages.new

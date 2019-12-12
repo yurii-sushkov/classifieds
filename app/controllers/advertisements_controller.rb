@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AdvertisementsController < ApplicationController
   before_action :set_advertisement, only: %i[show edit update destroy]
   before_action :authenticate_user!, only: %i[new edit update destroy]
@@ -45,6 +47,7 @@ class AdvertisementsController < ApplicationController
   end
 
   private
+
   def advertisement_params
     params.require(:advertisement).permit(:category_id, :user_id, :title, :text).merge(user_id: current_user.id)
   end

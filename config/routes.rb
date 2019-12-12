@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   devise_for :users, controllers: {
     sessions: 'users/sessions',
@@ -11,7 +13,7 @@ Rails.application.routes.draw do
 
   resources :users
 
-  resources :search, only: [:index, :show]
+  resources :search, only: %i[index show]
 
   resources :conversations do
     resources :messages
