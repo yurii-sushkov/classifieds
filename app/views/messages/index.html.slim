@@ -24,6 +24,5 @@
           = f.text_area :body
           = f.text_field :user_id, value: current_user.id, type: 'hidden'
         .input-field
-          /= f.submit 'Add Reply', class: 'btn lighten-2 waves-effect waves-light'
           = f.button('<i class="material-icons right">send</i>Send'.html_safe,
               class: 'btn lighten-2 waves-effect waves-light')
